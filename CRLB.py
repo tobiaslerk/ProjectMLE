@@ -1,13 +1,5 @@
-import constants
+from constants import A, w_0, phi, T, N, n_0, P, Q, SNR_db_list, standard_deviation_list, m_values
 
-A = constants.A
-w_0 = constants.w_0
-phi = constants.phi
-T = constants.T
-N = constants.N
-n_0 = constants.n_0
-P = constants.P
-Q = constants.Q
 
 def W_CRLB(standard_deviation):
 
