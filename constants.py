@@ -13,7 +13,7 @@ Q = (N * (N - 1) * (2*N - 1)) / 6
 
 SNR_db_list = np.array([-10, 0, 10, 20, 30, 40, 50, 60])
 SNR_list = 10 ** (SNR_db_list / 20)
-variance_list = A ** 2 / 2 * SNR_list
+variance_list = A ** 2 / (2 * SNR_list)
 standard_deviation_list = np.sqrt(variance_list)
 
 k = np.array([10, 12, 14, 16, 18, 20])

@@ -22,13 +22,13 @@ def Sim_estimation(m, standard_deviation):
 
     w_hat = W_hat_FFT(x_values, m)
     
-    phi_hat = Phi_hat_FFT(x_values, m)
+    phi_hat = Phi_hat_FFT(x_values, w_hat)
 
     return w_hat, phi_hat
 
 def FindMaxFFTIndex(x, M):
     fft_x = np.fft.fft(x, M)
-    k = np.argmax(fft_x)
+    k = np.argmax(np.abs(fft_x))
     return k
 
 def W_hat_FFT(x, M):
@@ -36,13 +36,12 @@ def W_hat_FFT(x, M):
     omega_fft = 2 * np.pi * k / (M * T)
     return omega_fft
 
-def Phi_hat_FFT(x,M):
-    omega_hat = W_hat_FFT(x,M)
+def Phi_hat_FFT(x, w_hat):
 
     N = len(x)
     n = np.arange(n_0, n_0 + N)
 
-    exp_terms = np.exp(-1j * omega_hat * n * T)
+    exp_terms = np.exp(-1j * w_hat * n * T)
     phi_hat = np.angle(np.mean(x * exp_terms))
 
     return phi_hat

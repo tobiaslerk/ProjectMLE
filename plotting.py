@@ -72,9 +72,12 @@ def PlotResults(m_values, standard_deviation_list, num_estimations):
             w_variance_list.append(w_error_variance)
             phi_variance_list.append(phi_error_variance)
 
-        plt.figure(figsize=(12, 6))
+
+        print(f"m = {m} - Frequency Variance: {w_variance_list}")
+        #plt.figure(figsize=(12, 6))
+        plt.figure(m, figsize=(12, 6))
         plt.title(f"Estimator variances vs CRLB for m = 2 ^ {int(np.log2(m))}", fontsize=14, fontweight='bold')
-    
+
         # Frequency
         plt.subplot(1, 2, 1)
         plt.plot(SNR_db_list, w_variance_list, marker='o', label = "Estimator Variance", color = "blue")
@@ -92,7 +95,7 @@ def PlotResults(m_values, standard_deviation_list, num_estimations):
         plt.ylabel('Variance')
         plt.grid(True)
         plt.legend()
-        plt.show()
+    plt.show()
 
 
 
