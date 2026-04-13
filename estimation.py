@@ -14,7 +14,7 @@ def X(t, standard_deviation):
 
     return A * np.exp(1j * (w_0 * t + phi)) + complex_noise
 
-def Max_FFT(x, M):
+def W_estimate_FFT(x, M):
     fft_x = np.fft.fft(x, M)
     k = np.argmax(fft_x)
     omega_fft = 2 * np.pi * k / (M * T)
