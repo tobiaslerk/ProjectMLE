@@ -37,12 +37,16 @@ def W_hat_FFT(x, M):
     omega_fft = 2 * np.pi * k / (M * T)
     return omega_fft
 
+<<<<<<< HEAD
 def Phi_hat_FFT(x,omega_hat):
+=======
+def Phi_hat_FFT(x, w_hat):
+>>>>>>> a6c40fc955c2ee3a68c5d83638aaae74e1c71215
 
     N = len(x)
     n = np.arange(n_0, n_0 + N)
 
-    exp_terms = np.exp(-1j * omega_hat * n * T)
+    exp_terms = np.exp(-1j * w_hat * n * T)
     phi_hat = np.angle(np.mean(x * exp_terms))
 
     return phi_hat

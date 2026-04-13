@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from constants import A, w_0, phi, SNR_db_list
 import estimation
 import CRLB
+from tqdm import tqdm
 
 def PlotSignal(t, x_values):
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))
@@ -71,28 +72,47 @@ def PlotResults(m_values, standard_deviation_list, num_estimations):
         phi_variance_list = []
         w_variance_list, phi_variance_list  = [], []
 
+<<<<<<< HEAD
         
 
         for sd in standard_deviation_list:
+=======
+        for sd in tqdm(standard_deviation_list, leave=False):
+>>>>>>> a6c40fc955c2ee3a68c5d83638aaae74e1c71215
             errors_w, errors_phi = [], []
             
             for _ in range(num_estimations):
                 w_estimate, phi_estimate = estimation.Sim_estimation(m, sd)
-
-                w_estimates.append(w_estimate)
                 errors_w.append(w_estimate - w_0)
                 errors_phi.append(phi_estimate - phi)
-                phi_estimates.append(phi_estimate)
-            
-            w_error_variance = variance(errors_w)
-            phi_error_variance = variance(errors_phi)
-            
-            w_variance_list.append(w_error_variance)
-            phi_variance_list.append(phi_error_variance)
+                
+            w_variance_list.append(variance(errors_w))
+            phi_variance_list.append(variance(errors_phi))
 
-        plt.figure(figsize=(12, 6))
-        plt.title(f"Estimator variances vs CRLB for m = 2 ^ {int(np.log2(m))}", fontsize=14, fontweight='bold')
+
+        fig, axes = plt.subplots(1, 2, figsize=(12, 6))
+        fig.suptitle(f"Estimator Variances vs CRLB for M = 2^{int(np.log2(m))}", fontsize=14, fontweight='bold')
+
+        axes[0].semilogy(SNR_db_list, w_variance_list, marker='o', color='blue', label='Estimator Variance')
+        axes[0].semilogy(SNR_db_list, w_CRLB,          marker='o', color='red',  label='CRLB')
+        axes[0].set(title='Frequency', xlabel='SNR (dB)', ylabel='Variance')
+        axes[0].grid(True)
+        axes[0].legend()
+
+        axes[1].semilogy(SNR_db_list, phi_variance_list, marker='o', color='blue', label='Estimator Variance')
+        axes[1].semilogy(SNR_db_list, phi_CRLB,          marker='o', color='red',  label='CRLB')
+        axes[1].set(title='Phase', xlabel='SNR (dB)', ylabel='Variance')
+        axes[1].grid(True)
+        axes[1].legend()
+
+        plt.tight_layout()
+    plt.show()   # inside the loop
     
+    """     print(f"m = {m} - Frequency Variance: {w_variance_list}")
+        #plt.figure(figsize=(12, 6))
+        plt.figure(m, figsize=(12, 6))
+        plt.title(f"Estimator variances vs CRLB for m = 2 ^ {int(np.log2(m))}", fontsize=14, fontweight='bold')
+
         # Frequency
         plt.subplot(1, 2, 1)
         plt.plot(SNR_db_list, w_variance_list, marker='o', label = "Estimator Variance", color = "blue")
@@ -110,7 +130,8 @@ def PlotResults(m_values, standard_deviation_list, num_estimations):
         plt.ylabel('Variance')
         plt.grid(True)
         plt.legend()
-        plt.show()
+    plt.show() """
+
 
 
 
