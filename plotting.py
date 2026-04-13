@@ -72,13 +72,7 @@ def PlotResults(m_values, standard_deviation_list, num_estimations):
         phi_variance_list = []
         w_variance_list, phi_variance_list  = [], []
 
-<<<<<<< HEAD
-        
-
-        for sd in standard_deviation_list:
-=======
         for sd in tqdm(standard_deviation_list, leave=False):
->>>>>>> a6c40fc955c2ee3a68c5d83638aaae74e1c71215
             errors_w, errors_phi = [], []
             
             for _ in range(num_estimations):
@@ -106,31 +100,7 @@ def PlotResults(m_values, standard_deviation_list, num_estimations):
         axes[1].legend()
 
         plt.tight_layout()
-    plt.show()   # inside the loop
-    
-    """     print(f"m = {m} - Frequency Variance: {w_variance_list}")
-        #plt.figure(figsize=(12, 6))
-        plt.figure(m, figsize=(12, 6))
-        plt.title(f"Estimator variances vs CRLB for m = 2 ^ {int(np.log2(m))}", fontsize=14, fontweight='bold')
-
-        # Frequency
-        plt.subplot(1, 2, 1)
-        plt.plot(SNR_db_list, w_variance_list, marker='o', label = "Estimator Variance", color = "blue")
-        plt.plot(SNR_db_list, w_CRLB, marker='o', label = "CRLB", color = "red")
-        plt.xlabel('SNR (dB)')
-        plt.ylabel('Variance')
-        plt.grid(True)
-        plt.legend()
-
-        # Phase
-        plt.subplot(1, 2, 2)
-        plt.plot(SNR_db_list, phi_variance_list, marker='o', label = "Estimator Variance", color = "blue")
-        plt.plot(SNR_db_list, phi_CRLB, marker='o', label = "CRLB", color = "red")
-        plt.xlabel('SNR (dB)')
-        plt.ylabel('Variance')
-        plt.grid(True)
-        plt.legend()
-    plt.show() """
+    plt.show()
 
 
 
