@@ -25,7 +25,7 @@ def Sim_estimation(m, standard_deviation):
     
     phi_hat = Phi_hat_FFT(x_values, w_hat)
 
-    return w_hat, phi_hat
+    return w_hat, phi_hat, x_values
 
 def FindMaxFFTIndex(x, M):
     fft_x = np.fft.fft(x, M)
