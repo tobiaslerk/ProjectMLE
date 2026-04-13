@@ -46,3 +46,6 @@ def Phi_hat_FFT(x,M):
     phi_hat = np.angle(np.mean(x * exp_terms))
 
     return phi_hat
+
+def recreate_signal(w_estimate, phi_estimate, t):
+    return A * np.exp(1j * (w_estimate * t + phi_estimate))

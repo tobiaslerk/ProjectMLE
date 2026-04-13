@@ -8,21 +8,46 @@ def PlotSignal(t, x_values):
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))
     fig.suptitle('Noisy Complex Exponential Signal', fontsize=14, fontweight='bold', y=1.02)
 
-    # Magnitude plot
-    ax1.plot(t, np.abs(x_values), label='Magnitude', color='steelblue', linewidth=1.5)
+    # Real plot
+    ax1.plot(t, np.real(x_values), label='Real', color='steelblue', linewidth=1.5)
     ax1.set_xlabel('Time (s)')
     ax1.set_ylabel('Amplitude')
-    ax1.set_title('Magnitude')
+    ax1.set_title('Real Part')
     ax1.legend()
     ax1.grid(True, alpha=0.3)
 
-    # Phase plot
-    ax2.plot(t, np.angle(x_values), label='Phase', color='coral', linewidth=1.5)
+    # Imaginary plot
+    ax2.plot(t, np.imag(x_values), label='Imaginary', color='coral', linewidth=1.5)
     ax2.set_xlabel('Time (s)')
-    ax2.set_ylabel('Phase (radians)')
-    ax2.set_title('Phase')
+    ax2.set_ylabel('Amplitude')
+    ax2.set_title('Imaginary Part')
     ax2.legend()
     ax2.grid(True, alpha=0.3)
+    plt.tight_layout()
+    plt.show()
+
+def PlotEstimationOverlay(t, x_values, w_estimate, phi_estimate):
+    plt.figure(figsize=(12, 6))
+    plt.title('Noisy Signal with Estimated Signal Overlay', fontsize=14, fontweight='bold')
+
+    # Plot the noisy signal
+    plt.plot(t, np.real(x_values), label='Real (Noisy)', color='red', linewidth=1.5)
+    plt.plot(t, np.imag(x_values), label='Imaginary (Noisy)', color='blue', linewidth=1.5)
+
+    # Recreate the estimated signal
+    estimated_signal = estimation.recreate_signal(w_estimate, phi_estimate, t)
+
+    print(f"Estimated freq: {w_estimate} rad/s, Real freq: {w_0} rad/s")
+    print(f"Estimated phase: {phi_estimate} radians, Real phase: {phi} radians")
+
+    # Plot the estimated signal
+    plt.plot(t, np.real(estimated_signal), label='Real (Estimated)', color='green', linewidth=2)
+    plt.plot(t, np.imag(estimated_signal), label='Imaginary (Estimated)', color='yellow', linewidth=2)
+
+    plt.xlabel('Time (s)')
+    plt.ylabel('Amplitude')
+    plt.legend()
+    plt.grid(True, alpha=0.3)
     plt.tight_layout()
     plt.show()
 
