@@ -7,5 +7,5 @@ from constants import A, w_0, phi, T, N, n_0, SNR_db_list, standard_deviation_li
 
 t = np.arange(n_0, n_0 + N, 1) * T 
 
-plotting.PlotResults(m_values, standard_deviation_list, num_estimations=10)
+plotting.PlotResults(m_values, standard_deviation_list, num_estimations=1000)
 
