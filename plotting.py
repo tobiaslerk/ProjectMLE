@@ -54,15 +54,6 @@ def PlotEstimationOverlay(t, x_values, w_estimate, phi_estimate):
 def recreate_signal(w_estimate, phi_estimate, t):
     return A * np.exp(1j * (w_estimate * t + phi_estimate)) 
 
-def SingelEstimation(m, standard_deviation):
-    w_estimate, phi_estimate = estimation.Sim_estimation(m, standard_deviation)
-
-    print(f"Estimated frequency: {w_estimate} rad/s")
-    print(f"Estimated phase: {phi_estimate} radians")
-
-    print(f"True frequency: {w_0} rad/s")
-    print(f"True phase: {phi} radians")
-
 def mean(values):
     return np.mean(values)
 
@@ -79,6 +70,8 @@ def PlotResults(m_values, standard_deviation_list, num_estimations):
         errors_w = []
         phi_variance_list = []
         w_variance_list, phi_variance_list  = [], []
+
+        
 
         for sd in standard_deviation_list:
             errors_w, errors_phi = [], []

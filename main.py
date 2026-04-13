@@ -10,7 +10,7 @@ x_values = estimation.X(t, standard_deviation_list[3])  # Using a specific stand
 
 w_estimate, phi_estimate = estimation.Sim_estimation(m_values[-1], standard_deviation_list[3])
 
-plotting.PlotEstimationOverlay(t, x_values, w_estimate, phi_estimate)
+#plotting.PlotEstimationOverlay(t, x_values, w_estimate, phi_estimate)
 
-#plotting.PlotResults(m_values, standard_deviation_list, num_estimations=10)
+plotting.PlotResults(m_values, standard_deviation_list, num_estimations=10)
 
