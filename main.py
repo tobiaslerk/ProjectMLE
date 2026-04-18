@@ -9,7 +9,7 @@ import Nelder_Mead_optimization
 t = np.arange(n_0, n_0 + N) * T 
 x_values = estimation.X(t, standard_deviation_list[3])  # Using a specific standard deviation for plotting
 
-#w_estimate, phi_estimate, _ = estimation.Sim_estimation(m_values[-1], standard_deviation_list[3])
+#w_estimate, phi_estimate, _ = estimation.Sim_estimation(m_values[5], standard_deviation_list[0])
 
 #plotting.PlotEstimationOverlay(t, x_values, w_estimate, phi_estimate)
 

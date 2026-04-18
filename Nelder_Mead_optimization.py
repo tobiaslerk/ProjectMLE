@@ -13,11 +13,11 @@ def task_b(num_estimations=1000):
     w_CRLB = CRLB.W_CRLB(standard_deviation_list)
     phi_CRLB = CRLB.Phi_CRLB(standard_deviation_list)
 
-    w_estimates, phi_estimates = [], []
     errors_w = []
     phi_variance_list = []
     w_variance_list, phi_variance_list  = [], []
 
+    #Creates a progress bar for the outer loop iterating over standard deviations
     for sd in tqdm(standard_deviation_list, leave=False):
         errors_w, errors_phi = [], []
             
@@ -35,7 +35,7 @@ def task_b(num_estimations=1000):
 
 
     fig, axes = plt.subplots(1, 2, figsize=(12, 6))
-    fig.suptitle(f"Estimator Variances vs CRLB for M = 2^{int(np.log2(m))}", fontsize=14, fontweight='bold')
+    fig.suptitle(f"Nelder–Mead Optimized Estimator vs CRLB (M = {m})", fontsize=14, fontweight='bold')
 
     axes[0].semilogy(SNR_db_list, w_variance_list, marker='o', color='blue', label='Estimator Variance')
     axes[0].semilogy(SNR_db_list, w_CRLB, marker='o', color='red',  label='CRLB')

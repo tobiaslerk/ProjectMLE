@@ -38,9 +38,6 @@ def PlotEstimationOverlay(t, x_values, w_estimate, phi_estimate):
     # Recreate the estimated signal
     estimated_signal = estimation.recreate_signal(w_estimate, phi_estimate, t)
 
-    print(f"Estimated freq: {w_estimate} rad/s, Real freq: {w_0} rad/s")
-    print(f"Estimated phase: {phi_estimate} radians, Real phase: {phi} radians")
-
     # Plot the estimated signal
     plt.plot(t, np.real(estimated_signal), label='Real (Estimated)', color='green', linewidth=2)
     plt.plot(t, np.imag(estimated_signal), label='Imaginary (Estimated)', color='yellow', linewidth=2)
@@ -67,22 +64,22 @@ def PlotResults(m_values, standard_deviation_list, num_estimations):
     
     for m in m_values:
         print(f"Processing m = {m}...")
-        w_estimates, phi_estimates = [], []
+        
         errors_w = []
         phi_variance_list = []
         w_variance_list, phi_variance_list  = [], []
 
+        #Creates a progress bar for the outer loop iterating over standard deviations
         for sd in tqdm(standard_deviation_list, leave=False):
             errors_w, errors_phi = [], []
             
             for _ in range(num_estimations):
-                w_estimate, phi_estimate = estimation.Sim_estimation(m, sd)
+                w_estimate, phi_estimate, _ = estimation.Sim_estimation(m, sd)
                 errors_w.append(w_estimate - w_0)
                 errors_phi.append(phi_estimate - phi)
                 
             w_variance_list.append(variance(errors_w))
             phi_variance_list.append(variance(errors_phi))
-
 
         fig, axes = plt.subplots(1, 2, figsize=(12, 6))
         fig.suptitle(f"Estimator Variances vs CRLB for M = 2^{int(np.log2(m))}", fontsize=14, fontweight='bold')
@@ -101,7 +98,3 @@ def PlotResults(m_values, standard_deviation_list, num_estimations):
 
         plt.tight_layout()
     plt.show()
-
-
-
-
